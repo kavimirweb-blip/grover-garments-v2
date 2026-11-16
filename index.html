@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grover Garments | Delhi's family fashion store since 1983 (demo v2)</title>
+<meta name="description" content="Ethnic, western and kids wear under one roof, since 1983. Dress the whole family and order on WhatsApp. A concept demo, not the official site.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Brief: Grover Garments, Delhi, since 1983. Family fashion: ethnic, western and kids wear. 72.8K on Instagram, orders by WhatsApp.
+   Idea: one family, one roof. The site dresses the whole family: pick who is coming and the occasion, and it builds the shopping list.
+   Opening: the year counts up to 1983. Version 2 replaces the illustrated concept with their own photos and an interactive family builder. */
+:root{
+  --cream:#fbf5ea; --paper:#f4ead8; --plum:#2b0f1d; --plum2:#431a2e; --wine:#7a1f3d; --gold:#b98a3c; --gold-l:#e3c27c; --mute:#7a6670; --ink:#24121b;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Instrument Sans',system-ui,sans-serif; --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-weight:400;background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{width:min(1200px,100% - 40px);margin:0 auto}
+.lab{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.lab b{opacity:.6;margin-right:.8em;font-weight:600}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:.98;letter-spacing:-.01em}
+h2{font-size:clamp(2.4rem,5.4vw,4.6rem)}
+h1 em,h2 em{font-style:italic;font-weight:500;color:var(--wine)}
+.btn{display:inline-flex;align-items:center;gap:.6em;padding:.95em 1.7em;border-radius:99px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;text-decoration:none;transition:transform .3s var(--ease),background .3s,color .3s}
+.btn-w{background:var(--wine);color:#fff}.btn-w:hover{background:var(--plum);transform:translateY(-2px)}
+.btn-g{background:var(--gold);color:#2a1a00}.btn-g:hover{background:var(--gold-l);transform:translateY(-2px)}
+.btn-o{border:1.5px solid currentColor}.btn-o:hover{background:rgba(127,127,127,.14);transform:translateY(-2px)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* loader */
+#loader{position:fixed;inset:0;z-index:300;background:var(--plum);color:var(--gold-l);display:grid;place-items:center;text-align:center;transition:opacity .8s .1s,visibility .8s .1s}
+#loader.off{opacity:0;visibility:hidden}
+#loader small{font-size:.72rem;letter-spacing:.5em;text-transform:uppercase;display:block;margin-bottom:6px;opacity:.8;padding-left:.5em}
+#yr{font-family:var(--serif);font-size:clamp(5rem,22vw,12rem);line-height:1;color:#fff;font-weight:500;font-variant-numeric:tabular-nums}
+#loader p{font-family:var(--serif);font-style:italic;font-size:1.4rem;margin-top:6px;letter-spacing:.04em}
+#skip{position:absolute;right:22px;bottom:22px;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;opacity:.55}
+
+nav{position:fixed;inset:0 0 auto 0;z-index:50;padding:16px 0;transition:background .4s,padding .4s}
+nav.s{background:rgba(251,245,234,.92);backdrop-filter:blur(12px);padding:10px 0;box-shadow:0 1px 0 rgba(43,15,29,.08)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--serif);font-size:1.6rem;font-weight:700;letter-spacing:.12em;text-decoration:none;text-transform:uppercase;line-height:1}
+.logo small{display:block;font-family:var(--sans);font-size:.5rem;letter-spacing:.42em;font-weight:500;color:var(--gold);margin-top:3px}
+nav ul{display:flex;gap:28px;list-style:none;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+nav ul a{text-decoration:none;opacity:.75}nav ul a:hover{opacity:1;color:var(--wine)}
+nav .btn{padding:.7em 1.3em;font-size:.7rem}
+
+/* hero */
+.hero{position:relative;padding:118px 0 80px;background:radial-gradient(70% 80% at 85% 20%,#f1dfbd,var(--cream) 65%);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;min-height:calc(100svh - 200px)}
+.hero h1{font-size:clamp(3.6rem,9vw,8.4rem)}
+.hero h1 span{display:block}
+.hero h1 .since{font-family:var(--sans);font-size:.16em;letter-spacing:.4em;text-transform:uppercase;font-weight:600;color:var(--gold);margin-bottom:.9em}
+.hero .sub{max-width:28em;margin:24px 0 32px;font-size:1.06rem;color:#5b4650}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap}
+.cnt{display:flex;flex-wrap:wrap;gap:12px 38px;margin-top:38px}
+.cnt b{display:block;font-family:var(--serif);font-size:2.8rem;font-weight:500;line-height:1;color:var(--wine);font-variant-numeric:tabular-nums}
+.cnt span{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.col{position:relative;aspect-ratio:4/5;perspective:1000px}
+.col .p{position:absolute;overflow:hidden;box-shadow:0 34px 60px -26px rgba(43,15,29,.7);transition:transform .25s var(--ease);border:7px solid #fffaf0}
+.col .p img{width:100%;height:100%;object-fit:cover}
+.col .p1{left:8%;top:0;width:68%;height:74%}
+.col .p2{right:0;bottom:2%;width:46%;height:42%;border-radius:50%}
+.col .p3{left:0;bottom:0;width:38%;height:30%}
+.col .tag{position:absolute;right:2%;top:6%;z-index:5;background:var(--plum);color:var(--gold-l);padding:.7em 1.1em;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+
+.mq{padding:16px 0;background:var(--plum);color:var(--gold-l);overflow:hidden;white-space:nowrap}
+.mq div{display:inline-block;animation:mq 40s linear infinite;font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,3vw,2.1rem)}
+.mq span{margin:0 .8em}.mq i{font-style:normal;color:var(--wine);filter:brightness(1.8)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+.sec{padding:110px 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:46px}
+.head p{max-width:26em;color:#5b4650}
+
+/* three worlds */
+.worlds{background:var(--wb,#f4ead8);color:var(--wk,#24121b);transition:background 1s,color 1s}
+.worlds[data-w="0"]{--wb:#f4ead8;--wk:#24121b}
+.worlds[data-w="1"]{--wb:#1c1722;--wk:#f4ead8}
+.worlds[data-w="2"]{--wb:#f6d9cf;--wk:#3b1220}
+.worlds h2 em{color:var(--wine);transition:color 1s}.worlds[data-w="1"] h2 em{color:var(--gold-l)}
+.worlds[data-w="1"] .lab{color:var(--gold-l)}
+.wtabs{display:flex;gap:8px;margin:28px 0 0;flex-wrap:wrap}
+.wtabs button{padding:.8em 1.6em;border:1.5px solid currentColor;border-radius:99px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;opacity:.6;transition:.3s}
+.wtabs button:hover{opacity:1}
+.wtabs button[aria-pressed=true]{background:var(--wine);border-color:var(--wine);color:#fff;opacity:1}
+.worlds[data-w="1"] .wtabs button[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#2a1a00}
+.wg{display:grid;grid-template-columns:.95fr 1.05fr;gap:60px;align-items:center;margin-top:46px}
+.wph{position:relative;aspect-ratio:4/5}
+.wph .im{position:absolute;inset:0;overflow:hidden;box-shadow:0 40px 70px -30px rgba(0,0,0,.6)}
+.wph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .9s,transform 1.5s var(--ease)}
+.wph img.on{opacity:1;transform:none}
+.wlist{list-style:none;border-top:1px solid rgba(127,127,127,.4)}
+.wlist li{display:grid;grid-template-columns:50px 1fr;gap:16px;align-items:center;padding:20px 0;border-bottom:1px solid rgba(127,127,127,.4);cursor:pointer;transition:padding .35s var(--ease)}
+.wlist li:hover{padding-left:12px}
+.wlist .n{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1.3rem}
+.wlist h3{font-size:clamp(1.6rem,3vw,2.3rem)}
+.wlist small{font-size:.82rem;opacity:.7;display:block;margin-top:2px}
+.note{font-size:.76rem;opacity:.65;margin-top:18px}
+
+/* family builder */
+.fam{background:var(--plum);color:var(--cream);position:relative;overflow:hidden}
+.fam .lab{color:var(--gold-l)}.fam h2 em{color:var(--gold-l)}
+.fam::before{content:"";position:absolute;right:-10%;top:-30%;width:60vw;height:60vw;background:radial-gradient(circle,rgba(185,138,60,.22),transparent 62%)}
+.fg{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start;margin-top:44px}
+.ll{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;opacity:.7;margin:24px 0 10px;font-weight:600}
+.cl{display:flex;flex-wrap:wrap;gap:9px}
+.chip{padding:.65em 1.25em;border:1.5px solid rgba(251,245,234,.35);border-radius:99px;font-size:.88rem;font-weight:500;transition:.3s}
+.chip:hover{border-color:var(--gold-l)}
+.chip[aria-pressed=true]{background:var(--gold);color:#2a1a00;border-color:var(--gold)}
+.list{background:var(--cream);color:var(--ink);padding:34px;box-shadow:0 34px 60px -30px #000;position:relative}
+.list::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:repeating-linear-gradient(90deg,var(--wine) 0 14px,var(--gold) 14px 28px)}
+.list h3{font-size:2rem;margin:6px 0 6px}
+.list>p{font-size:.84rem;color:var(--mute);margin-bottom:6px}
+.rows{list-style:none}
+.rows li{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 0;border-top:1px solid rgba(43,15,29,.14);align-items:center;animation:in .5s var(--ease) both}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.rows .av{width:44px;height:44px;border-radius:50%;background:var(--wine);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:1.3rem;font-weight:600}
+.rows b{font-family:var(--serif);font-size:1.4rem;font-weight:600;display:block;line-height:1.1}
+.rows small{font-size:.82rem;color:var(--mute)}
+.list .btn{width:100%;justify-content:center;margin-top:18px}
+.list .fine{font-size:.74rem;color:var(--mute);margin-top:10px;text-align:center}
+
+/* collections */
+.cols{background:var(--cream)}
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cc{position:relative;padding:26px 22px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;border:1.5px solid rgba(43,15,29,.18);transition:.35s var(--ease);background:transparent}
+.cc:hover{background:var(--plum);color:var(--cream);border-color:var(--plum);transform:translateY(-4px)}
+.cc h3{font-size:1.9rem}
+.cc span{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--gold)}
+.cc em{font-style:normal;font-family:var(--serif);font-size:1.1rem;opacity:.5}
+
+/* moments */
+.mom{background:var(--paper)}
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 20px 30px;margin:0 -20px;scrollbar-width:thin}
+.mm{flex:0 0 min(300px,74vw);scroll-snap-align:start}
+.mm .im{aspect-ratio:4/5;overflow:hidden;box-shadow:0 24px 44px -26px rgba(43,15,29,.6)}
+.mm img{width:100%;height:100%;object-fit:cover;transition:transform 1.3s var(--ease)}
+.mm:hover img{transform:scale(1.06)}
+.mm h3{font-size:1.5rem;margin-top:12px}
+.mm p{font-size:.8rem;color:var(--mute)}
+.ig{margin-top:24px}
+
+/* story */
+.story{background:var(--cream)}
+.tl{display:grid;grid-template-columns:repeat(3,1fr);margin-top:46px;border-top:1px solid rgba(43,15,29,.2)}
+.tl div{padding:28px 26px 8px 0;border-right:1px solid rgba(43,15,29,.12);padding-left:26px}
+.tl div:first-child{padding-left:0}.tl div:last-child{border:0}
+.tl b{display:block;font-family:var(--serif);font-size:clamp(2.6rem,5vw,4.2rem);font-weight:500;color:var(--wine);line-height:1}
+.tl h3{font-size:1.5rem;margin:8px 0 4px}
+.tl p{font-size:.92rem;color:#5b4650}
+
+/* visit */
+.visit{background:var(--plum);color:var(--cream);padding:110px 0 0;position:relative;overflow:hidden}
+.visit .lab{color:var(--gold-l)}.visit h2 em{color:var(--gold-l)}
+.vg{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.info{margin-top:28px}
+.info div{padding:16px 0;border-top:1px solid rgba(251,245,234,.2)}
+.info div:last-child{border-bottom:1px solid rgba(251,245,234,.2)}
+.info small{display:block;font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-l);font-weight:600;margin-bottom:3px}
+.info p,.info a{font-size:1.1rem;text-decoration:none}
+.vc{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.vimg{aspect-ratio:4/5;max-width:400px;margin-left:auto;overflow:hidden;border:7px solid rgba(251,245,234,.12)}
+.vimg img{width:100%;height:100%;object-fit:cover}
+.big{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(5rem,22vw,20rem);line-height:.8;text-align:center;white-space:nowrap;margin-top:60px;margin-bottom:-.14em;color:var(--gold-l);opacity:.13;user-select:none;pointer-events:none}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;padding:20px 0 96px;font-size:.76rem;opacity:.65;position:relative}
+
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);z-index:150;background:#fff;color:var(--ink);padding:.9em 1.4em;border-radius:14px;box-shadow:0 20px 50px -10px rgba(0,0,0,.45);font-size:.88rem;max-width:min(92vw,380px);text-align:center;opacity:0;pointer-events:none;transition:.5s var(--ease)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.mcta{position:fixed;inset:auto 12px 12px 12px;z-index:60;display:none;gap:10px;padding:8px;border-radius:99px;background:rgba(43,15,29,.95);backdrop-filter:blur(12px);box-shadow:0 10px 40px -8px rgba(0,0,0,.6)}
+.mcta a{flex:1;text-align:center;padding:.85em 1em;border-radius:99px;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.3);font-weight:600}
+.mcta a.p{background:var(--gold);border-color:var(--gold);color:#2a1a00}
+
+@media(max-width:900px){
+  nav ul{display:none}
+  .hero{padding-top:92px}
+  .hero .wrap,.wg,.fg,.vg{grid-template-columns:1fr;gap:40px}
+  .hero .wrap{min-height:0}
+  .col{max-width:430px;margin:0 auto;width:100%}
+  .sec{padding:74px 0}
+  .wph{max-width:440px;margin:0 auto;width:100%}
+  .cgrid{grid-template-columns:1fr 1fr}
+  .tl{grid-template-columns:1fr}.tl div{padding:22px 0;border-right:0;border-bottom:1px solid rgba(43,15,29,.12)}
+  .vimg{margin:0 auto}
+  .mcta{display:flex}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01s!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="loader" aria-hidden="true"><div><small>Since</small><div id="yr">1900</div><p>Grover Garments</p></div><button id="skip" type="button">Skip</button></div>
+
+<nav id="nav"><div class="wrap">
+  <a class="logo" href="#top">Grover<small>GARMENTS · SINCE 1983</small></a>
+  <ul><li><a href="#worlds">Three worlds</a></li><li><a href="#family">Dress the family</a></li><li><a href="#moments">In store</a></li><li><a href="#visit">Order</a></li></ul>
+  <a class="btn btn-w" href="#" data-wa="Hi Grover Garments! I'd like to order.">WhatsApp</a>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1><span class="since">Delhi · Family fashion</span><span>Dressing</span><span><em>families</em></span><span>since 1983.</span></h1>
+      <p class="sub">Ethnic, western and kids wear under one roof. Come in together, leave dressed for the occasion.</p>
+      <div class="row"><a class="btn btn-w" href="#family">Dress my family</a><a class="btn btn-o" href="#worlds">See the three worlds</a></div>
+      <div class="cnt"><div><b id="yrs">43</b><span>Years of dressing Delhi</span></div><div><b>72.8K</b><span>Follow on Instagram</span></div><div><b>3</b><span>Worlds, one roof</span></div></div>
+    </div>
+    <div class="col" id="col">
+      <div class="p p1" data-d="14"><img src="img/coatsuit.jpg" alt="Black embroidered tuxedo suit with a bow tie on a mannequin in the Grover Garments showroom"></div>
+      <div class="p p2" data-d="24"><img src="img/velvet.jpg" alt="Kids' dark velvet blazer with a shawl collar" style="object-position:50% 60%"></div>
+      <div class="p p3" data-d="8"><img src="img/cordset.jpg" alt="Two mannequins in black embroidered kurta sets" style="object-position:30% 30%"></div>
+      <div class="tag">From the store</div>
+    </div>
+  </div>
+</header>
+
+<div class="mq" aria-hidden="true"><div><span>Ethnic wear</span><i>✦</i><span>Western wear</span><i>✦</i><span>Kids wear</span><i>✦</i><span>Jodhpuri</span><i>✦</i><span>Kurta sets</span><i>✦</i><span>Lehengas</span><i>✦</i><span>Coat suits</span><i>✦</i><span>Winter wear</span><i>✦</i><span>Ethnic wear</span><i>✦</i><span>Western wear</span><i>✦</i><span>Kids wear</span><i>✦</i><span>Jodhpuri</span><i>✦</i><span>Kurta sets</span><i>✦</i><span>Lehengas</span><i>✦</i><span>Coat suits</span><i>✦</i><span>Winter wear</span><i>✦</i></div></div>
+
+<section class="sec worlds" id="worlds" data-w="0">
+  <div class="wrap">
+    <div class="rv"><p class="lab"><b>01</b>Three worlds</p><h2 style="margin-top:12px">One store,<br><em>every occasion.</em></h2>
+      <div class="wtabs" id="wt" role="group" aria-label="World"></div></div>
+    <div class="wg rv">
+      <div class="wph" id="wph"><div class="im">
+        <img src="img/jodhpuri.jpg" alt="Black jodhpuri outfit with beaded embroidery and a brooch" class="on" style="object-position:50% 40%">
+        <img src="img/blazer.jpg" alt="Grey textured blazer set on a Grover hanger" style="object-position:50% 50%">
+        <img src="img/velvet.jpg" alt="Kids' velvet blazer" style="object-position:50% 50%">
+      </div></div>
+      <div>
+        <ul class="wlist" id="wl"></ul>
+        <p class="note">Categories taken from Grover's own Instagram posts. We'd add your full catalogue and prices.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec fam" id="family" data-w="x">
+  <div class="wrap">
+    <div class="rv"><p class="lab"><b>02</b>Dress the family</p><h2 style="margin-top:12px">Who's coming to<br>the <em>occasion?</em></h2></div>
+    <div class="fg rv">
+      <div>
+        <div class="ll">Who needs an outfit</div><div class="cl" id="who"></div>
+        <div class="ll">The occasion</div><div class="cl" id="occ"></div>
+      </div>
+      <div class="list">
+        <p class="lab" style="color:var(--wine)">Your family's list</p>
+        <h3 id="lh"></h3>
+        <p id="lp"></p>
+        <ul class="rows" id="rows"></ul>
+        <a class="btn btn-w" id="lsend" href="#">Send this list on WhatsApp</a>
+        <p class="fine">Opens WhatsApp with the list ready to send.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec cols" id="collections">
+  <div class="wrap">
+    <div class="head rv"><div><p class="lab"><b>03</b>Collections</p><h2 style="margin-top:12px">Everything<br><em>under one roof.</em></h2></div><p>The same sections you see on Grover's Instagram, one tap from a WhatsApp enquiry.</p></div>
+    <div class="cgrid rv" id="cg"></div>
+  </div>
+</section>
+
+<section class="sec mom" id="moments">
+  <div class="wrap">
+    <div class="head rv"><div><p class="lab"><b>04</b>In store</p><h2 style="margin-top:12px">Straight from the<br><em>shop floor.</em></h2></div><p>Real pieces from Grover's own posts. Tap any one to ask about it.</p></div>
+    <div class="rail rv" id="rail"></div>
+    <p class="ig"><a class="btn btn-o" href="https://www.instagram.com/grovergarments/" target="_blank" rel="noopener">See it all on Instagram →</a></p>
+  </div>
+</section>
+
+<section class="sec story" id="story">
+  <div class="wrap rv">
+    <p class="lab"><b>05</b>The story</p><h2 style="margin-top:12px">A family store for<br><em>families.</em></h2>
+    <div class="tl">
+      <div><b>1983</b><h3>The doors open</h3><p>Grover Garments begins in Delhi as a store for the whole family.</p></div>
+      <div><b>3</b><h3>Worlds, one roof</h3><p>Ethnic, western and kids wear, so everyone is dressed in one visit.</p></div>
+      <div><b>72.8K</b><h3>Following along</h3><p>Today the store shares its latest pieces with a large Instagram family.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap vg">
+    <div class="rv">
+      <p class="lab"><b>06</b>Order</p>
+      <h2 style="margin-top:12px">Visit the store or<br><em>WhatsApp to order.</em></h2>
+      <div class="info">
+        <div><small>WhatsApp to order</small><a href="https://wa.me/919899753700" target="_blank" rel="noopener">98997 53700</a></div>
+        <div><small>Instagram</small><a href="https://www.instagram.com/grovergarments/" target="_blank" rel="noopener">@grovergarments</a></div>
+        <div><small>Where</small><p>Delhi. Message us for the store address and timings.</p></div>
+      </div>
+      <div class="vc"><a class="btn btn-g" href="#" data-wa="Hi Grover Garments! I'd like to order.">WhatsApp to order</a><a class="btn btn-o" href="#family">Dress my family</a></div>
+    </div>
+    <div class="rv"><div class="vimg"><img src="img/kurta.jpg" alt="Black kurta set with gold embroidery on a mannequin"></div></div>
+  </div>
+  <div class="big" aria-hidden="true">Grover</div>
+  <div class="wrap foot"><span>Concept demo (version 2), not the official Grover Garments website.</span><span>Photos from @grovergarments on Instagram</span></div>
+</section>
+
+<div class="mcta"><a href="#family">Dress my family</a><a class="p" href="#" data-wa="Hi Grover Garments! I'd like to order.">WhatsApp</a></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const NUM='919899753700';
+const $=s=>document.querySelector(s);
+const wa=t=>'https://wa.me/'+NUM+'?text='+encodeURIComponent(t);
+document.addEventListener('click',e=>{const a=e.target.closest('[data-wa]');if(a){e.preventDefault();window.open(wa(a.dataset.wa),'_blank','noopener')}});
+
+/* loader counts up to 1983 */
+const L=$('#loader');function hideL(){L.classList.add('off');try{sessionStorage.setItem('gv','1')}catch(e){}}
+let seen=false;try{seen=sessionStorage.getItem('gv')==='1'}catch(e){}
+if(seen)L.classList.add('off');else{
+  const yr=$('#yr');let t0=null;const T=1700;const step=ts=>{if(t0===null)t0=ts;const k=Math.min((ts-t0)/T,1),e=1-Math.pow(1-k,3);yr.textContent=Math.round(1900+e*83);if(k<1)requestAnimationFrame(step);else setTimeout(hideL,650)};requestAnimationFrame(step);$('#skip').onclick=hideL}
+$('#yrs').textContent=new Date().getFullYear()-1983;
+
+const nav=$('#nav');addEventListener('scroll',()=>nav.classList.toggle('s',scrollY>40),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+
+/* hero collage tilts with the pointer */
+(function(){const c=$('#col');if(matchMedia('(pointer:coarse)').matches)return;
+  c.addEventListener('pointermove',e=>{const b=c.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;c.querySelectorAll('.p').forEach(p=>{const d=+p.dataset.d;p.style.transform=`translate(${x*d}px,${y*d}px) rotateY(${x*d/3}deg) rotateX(${-y*d/3}deg)`})});
+  c.addEventListener('pointerleave',()=>c.querySelectorAll('.p').forEach(p=>p.style.transform=''))})();
+
+/* three worlds */
+const WD=[
+ {k:'Ethnic',img:0,items:[['Jodhpuri outfits','Beaded, structured, made for the wedding season'],['Kurta cordsets','Embroidered sets for festive evenings'],['Sherwani and coat sets','Dressed up for the groom and the family']]},
+ {k:'Western',img:1,items:[['Coat suits','Tuxedo and three-piece styles'],['Blazer sets','Textured, tailored, easy to layer'],['Winter wear','Sweat fabric, shrugs and winter tops']]},
+ {k:'Kids',img:2,items:[['Velvet blazers','Little tuxedos for little occasions'],['Lehenga sets','Festive sets for girls'],['Trendy blazer articles','Boys wear, ready for the party']]}
+];
+const WS=$('.worlds'),wims=[...document.querySelectorAll('#wph img')];
+WD.forEach((w,i)=>{const b=document.createElement('button');b.type='button';b.textContent=w.k;b.setAttribute('aria-pressed',i===0);b.onclick=()=>{clearInterval(auto);setW(i)};$('#wt').appendChild(b)});
+let wc=0;function setW(i){wc=i;WS.dataset.w=i;[...$('#wt').children].forEach((b,j)=>b.setAttribute('aria-pressed',j===i));wims.forEach((m,j)=>m.classList.toggle('on',j===WD[i].img));
+  $('#wl').innerHTML='';WD[i].items.forEach((it,j)=>{const li=document.createElement('li');li.innerHTML=`<span class="n">0${j+1}</span><div><h3>${it[0]}</h3><small>${it[1]}</small></div>`;li.onclick=()=>window.open(wa('Hi Grover Garments! I\'d like to see '+it[0].toLowerCase()+'. Could you share options and prices?'),'_blank','noopener');$('#wl').appendChild(li)})}
+setW(0);const auto=setInterval(()=>setW((wc+1)%3),7000);
+
+/* dress the family */
+const MEM=[['Dad','D'],['Mom','M'],['Son','S'],['Daughter','D'],['Grandparents','G']];
+const OCC=['Wedding','Festive','Winter party'];
+const REC={
+ Wedding:{Dad:['Jodhpuri outfit or coat suit','Beaded, structured, with a brooch'],Mom:['Embroidered suit or lehenga','Festive colours, ready to wear'],Son:['Velvet blazer set','A little tuxedo for the baraat'],Daughter:['Lehenga set','Sequins and soft net'],Grandparents:['Kurta set and ethnic sets','Comfortable, with fine embroidery']},
+ Festive:{Dad:['Kurta cordset','Embroidered, in a festive shade'],Mom:['Kurta set or sharara','Hand-finished detail'],Son:['Kurta set','Matches Dad'],Daughter:['Plazo or sharara set','Easy to move in'],Grandparents:['Classic kurta sets','Soft fabrics']},
+ 'Winter party':{Dad:['Coat suit or blazer set','Textured, easy to layer'],Mom:['Winter top and shrug','Sweat fabric and knits'],Son:['Trendy blazer article','Smart for the party'],Daughter:['Velvet coat set','Warm and dressy'],Grandparents:['Shrug and winter wear','Layers that stay warm']}
+};
+let who=new Set(['Dad','Mom','Son','Daughter']),oc='Wedding';
+function chips(){const w=$('#who');w.innerHTML='';MEM.forEach(m=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=m[0];b.setAttribute('aria-pressed',who.has(m[0]));b.onclick=()=>{who.has(m[0])?(who.size>1&&who.delete(m[0])):who.add(m[0]);chips();upd()};w.appendChild(b)});
+  const o=$('#occ');o.innerHTML='';OCC.forEach(n=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=n;b.setAttribute('aria-pressed',n===oc);b.onclick=()=>{oc=n;chips();upd()};o.appendChild(b)})}
+function upd(){const ms=MEM.filter(m=>who.has(m[0]));$('#lh').textContent=oc+' list';$('#lp').textContent=ms.length+' '+(ms.length>1?'people':'person')+'. Suggestions from Grover\'s own categories.';
+  $('#rows').innerHTML=ms.map(m=>{const r=REC[oc][m[0]];return `<li><span class="av">${m[0][0]}</span><div><b>${m[0]}: ${r[0]}</b><small>${r[1]}</small></div></li>`}).join('');
+  $('#lsend').onclick=e=>{e.preventDefault();window.open(wa(`Hi Grover Garments! We're planning for a ${oc.toLowerCase()}. Looking for:\n`+ms.map(m=>`- ${m[0]}: ${REC[oc][m[0]][0]}`).join('\n')+'\nCould you share options and prices?'),'_blank','noopener')}}
+chips();upd();
+
+/* collections (from Instagram highlights) */
+[['Menswear','Suits, jodhpuri, kurtas'],['Womenswear','Kurta sets, tops, winter wear'],['Girls Wear','Lehengas and festive sets'],['Boys Wear','Blazers and kurta sets'],['Kidswear','For the little ones'],['Offers','Current offers'],['Combos','Family and set combos'],['Client Reviews','What customers say']].forEach((c,i)=>{const b=document.createElement('button');b.className='cc';b.type='button';b.innerHTML=`<em>0${i+1}</em><div><h3>${c[0]}</h3><span>${c[1]}</span></div>`;b.onclick=()=>window.open(wa('Hi Grover Garments! I\'d like to see '+c[0].toLowerCase()+'.'),'_blank','noopener');$('#cg').appendChild(b)});
+
+/* moments rail */
+[['coatsuit','Coat suit','Embroidered tuxedo set'],['jodhpuri','Jodhpuri outfit','Beaded and structured'],['velvet','Velvet fabric','Kids blazer'],['kurta','Kurta cordset','Gold embroidery'],['cordset','Cordset styles','Black with silver work'],['blazer','Shrug style','Textured blazer set']].forEach(m=>{const a=document.createElement('article');a.className='mm';a.innerHTML=`<div class="im"><img src="img/${m[0]}.jpg" alt="${m[1]}" loading="lazy"></div><h3>${m[1]}</h3><p>${m[2]}</p>`;a.style.cursor='pointer';a.onclick=()=>window.open(wa('Hi Grover Garments! I\'d like to know about the '+m[1].toLowerCase()+'.'),'_blank','noopener');$('#rail').appendChild(a)});
+</script>
+</body>
+</html>
